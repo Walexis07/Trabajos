@@ -1,0 +1,11 @@
+Título del Proyecto: Banco Súper Famoso de Colombia
+
+Integrantes: 
+* Emanuel Josue Torres Márquez
+* Walexis Snideer Escalante Villamizar
+
+Descripción:
+
+Se plantea un simulador de un sistema de validación para la aprobación o rechazo de acceso a créditos de libre inversión por parte de una entidad bancaria. Dicho sistema requiere que un asesor de la entidad consulte al solicitante el tipo de cliente (su ocupación), el monto solicitado, el plazo para el pago del crédito junto a sus intereses y la existencia de un codeudor que soporte la solicitud del préstamo.
+
+Una vez el sistema hace la validación y evaluación de los datos ingresados, indicará si el préstamo es aprobado, su tasa de interés y total a pagar; o rechazado y el motivo del mismo. Finalmente el asesor tendrá la opción de terminar el programa o seguir llenando solicitudes de clientes en el sistema.

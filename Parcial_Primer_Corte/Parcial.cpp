@@ -5,7 +5,7 @@
 
 using namespace std;
 
-//Definición de Tasas de Interes
+//Definiciï¿½n de Tasas de Interes
 float rates[] = {0.006, 0.007, 0.004, 0.008};
 
 bool stringTypeVerification (string stringValue);
@@ -18,25 +18,25 @@ void totalAmount (string clientType, float loadAmount, int monthsNumber);
 
 int main () {
 	
-	//Mensaje de inicio para la ejecución del programa 
+	//Mensaje de inicio para la ejecuciï¿½n del programa 
 	cout << "\t\t===== Banco Super Famoso de Colombia =====" << endl << endl;
-	cout << "El siguiente programa le ayudará a determinar si un cliente cumple o no con las condiciones para solicitar un crédito de libre inversión. En caso de cumplirlas, le entregará una proyección de la tasa de interés y el valor total a pagar. " << endl;
+	cout << "El siguiente programa le ayudarï¿½ a determinar si un cliente cumple o no con las condiciones para solicitar un crï¿½dito de libre inversiï¿½n. En caso de cumplirlas, le entregarï¿½ una proyecciï¿½n de la tasa de interï¿½s y el valor total a pagar. " << endl;
 	cout << "========================================================================================================================" << endl << endl;
 	cout << "========================================================================================================================" << endl;
 	
-	//Inicialización del bucle del programa
+	//Inicializaciï¿½n del bucle del programa
 	bool repetition = true;
 	while (repetition) {
 		
-		//Declaración de variables
+		//Declaraciï¿½n de variables
 		string clientType;
 		float loadAmount;
 		int monthsNumber;
 		bool hasCoDebtor;
 		char exit = 'N';
 		
-		//Ingreso de datos por parte del usuario y verificación de tipos y rangos
-		cout << "Ingrese el tipo de cliente que solicita el préstamo: " ;
+		//Ingreso de datos por parte del usuario y verificaciï¿½n de tipos y rangos
+		cout << "Ingrese el tipo de cliente que solicita el prï¿½stamo: " ;
 		cin >> clientType;
 		
 		transform(clientType.begin(), clientType.end(), clientType.begin(), ::toupper);
@@ -44,55 +44,55 @@ int main () {
 			continue;
 		}
 		
-		cout << "Ingrese el monto del préstamo solicitado por el cliente: " ;
+		cout << "Ingrese el monto del prï¿½stamo solicitado por el cliente: " ;
 		cin >> loadAmount;
 		if (!floatTypeVerification(loadAmount)) {
 			continue;
 		}
 		
-		cout << "Ingrese el plazo (en meses) para el pago total de las cuotas del préstamo: " ;
+		cout << "Ingrese el plazo (en meses) para el pago total de las cuotas del prï¿½stamo: " ;
 		cin >> monthsNumber;
 		if (!intTypeVerification(monthsNumber)) {
 			continue;
 		}
 		
-		cout << "Ingrese si el cliente cuenta con un co-deudor válido para solicitar el préstamo [1/0]: " ;
+		cout << "Ingrese si el cliente cuenta con un co-deudor vï¿½lido para solicitar el prï¿½stamo [1/0]: " ;
 		cin >> hasCoDebtor;
 		if (!boolTypeVerification(hasCoDebtor)) {
 			continue;
 		}
 		
-		//Aprobación o Rechazo del crédito socilitado
+		//Aprobaciï¿½n o Rechazo del crï¿½dito socilitado
 		int result = loanValidation(clientType, loadAmount, monthsNumber, hasCoDebtor);
 		
 		//Respuestas hacia el cliente
 		cout << "\n------------------------------------------------------------------------------------------------------------------------" << endl;
 		switch(result){
 			case 1:
-				totalAmount(clientType, loadAmount, monthsNumber);		//Por facilidades para escribir las tasas de interés se toma la decisión de crear otra función
+				totalAmount(clientType, loadAmount, monthsNumber);		//Por facilidades para escribir las tasas de interï¿½s se toma la decisiï¿½n de crear otra funciï¿½n
 				break;
 			case 2:
-				cout << "\t\aRECHAZADO. El plazo excede el máximo de tiempo permitido para créditos de montos bajos" << endl << endl;
+				cout << "\t\aRECHAZADO. El plazo excede el mï¿½ximo de tiempo permitido para crï¿½ditos de montos bajos" << endl << endl;
 				break;
 			case 3:
-				cout << "\t\aRECHAZADO. El plazo excede el máximo de tiempo permitido para créditos de montos altos" << endl << endl;
+				cout << "\t\aRECHAZADO. El plazo excede el mï¿½ximo de tiempo permitido para crï¿½ditos de montos altos" << endl << endl;
 				break;
 			case 4:	
-				cout << "\t\aRECHAZADO. El monto solicitado excede el límite permitido con codeudor" << endl << endl;
+				cout << "\t\aRECHAZADO. El monto solicitado excede el lï¿½mite permitido con codeudor" << endl << endl;
 				break;
 			case 5:
-				cout << "\t\aRECHAZADO. El monto solicitado excede el límite permitido sin codeudor" << endl << endl;
+				cout << "\t\aRECHAZADO. El monto solicitado excede el lï¿½mite permitido sin codeudor" << endl << endl;
 				break;
 			case 6:
-				cout << "\t\aRECHAZADO. Si se encuentra en condición de desempleo, debe tener un codeudor que soporte responsabilidad por el crédito solicitado" << endl << endl;
+				cout << "\t\aRECHAZADO. Si se encuentra en condiciï¿½n de desempleo, debe tener un codeudor que soporte responsabilidad por el crï¿½dito solicitado" << endl << endl;
 				break;
 			default:
-				cout << "\t\aCaso por defecto del switch que no debería aparecer en la consola" << endl << endl;
+				cout << "\t\aCaso por defecto del switch que no deberï¿½a aparecer en la consola" << endl << endl;
 		}
 		
-		//Confirmación para seguir ejecutando o finalizar el programa
+		//Confirmaciï¿½n para seguir ejecutando o finalizar el programa
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\t¿Desea salir del programa? [S/N] ";
+		cout << "\tï¿½Desea salir del programa? [S/N] ";
 		cin >> exit;
 		repetition = (exit == 'S') ? false : true;
 		cout << "\n------------------------------------------------------------------------------------------------------------------------" << endl;
@@ -104,73 +104,73 @@ int main () {
 
 
 
-//Declaración de Funciones MUY Útiles
+//Declaraciï¿½n de Funciones MUY ï¿½tiles
 
-//Verificación de Tipo String
+//Verificaciï¿½n de Tipo String
 bool stringTypeVerification (string clientType) {
 	
 	if (clientType == "ESTUDIANTE" || clientType == "EMPLEADO" || clientType == "PENSIONADO" || clientType == "DESEMPLEADO") {
 		return true;
 	} else {
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite [Estudiante/Empleado/Pensionado/Desempleado]. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es vï¿½lido, recuerde que solo se admite [Estudiante/Empleado/Pensionado/Desempleado]. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 }
 
-//Verificación de Tipo Float
+//Verificaciï¿½n de Tipo Float
 bool floatTypeVerification (float loadAmount) {
 	
 	if (cin.fail()) {
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 99999999. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es vï¿½lido, recuerde que solo se admite montos entre 1000 - 10000000. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 	
-	if (loadAmount > 1000 && loadAmount < 99999999) {
+	if (loadAmount > 1000 && loadAmount < 10000000) {
 		return true;
 	} else {
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 99999999. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tamaï¿½o del dato ingresado no es vï¿½lido, recuerde que solo se admite montos entre 1000 - 10000000. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 }
 
-//Verificación de Tipo Integer
+//Verificaciï¿½n de Tipo Integer
 bool intTypeVerification (int monthsNumber) {
 	
 	if (cin.fail()) {
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite entre 2 - 50 meses. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es vï¿½lido, recuerde que solo se admite entre 2 - 48 meses. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 	
-	if (monthsNumber > 1 && monthsNumber < 50) {
+	if (monthsNumber > 1 && monthsNumber < 48) {
 		return true;
 	} else {
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite entre 2 - 50 meses. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tamaï¿½o del dato ingresado no es vï¿½lido, recuerde que solo se admite entre 2 - 48 meses. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 }
 
-//Verificación de Tipo Booleano
+//Verificaciï¿½n de Tipo Booleano
 bool boolTypeVerification (bool hasCoDebtor) {
 	
 	if (cin.fail()) {
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite [1 = Si, 0 = No]. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es vï¿½lido, recuerde que solo se admite [1 = Si, 0 = No]. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
@@ -180,13 +180,13 @@ bool boolTypeVerification (bool hasCoDebtor) {
 }
 
 
-/*Validación del Crédito
-Para efectos prácticos y mejor lectura del código, se plantean las siguientes salidas:
-1. Resultado satisfactorio para la aprobación del crédito CON o SIN co-deudor
-2. Rechazo por exceso en el límite de tiempo de pago para créditos grandes
-3. Rechazo por exceso en el límite de tiempo de pago para créditos pequeños
-4. Rechazo por exceso en el límite de monto permitido para el crédito CON co-deudor
-5. Rechazo por exceso en el límite de monto permitido para el crédito SIN co-deudor
+/*Validaciï¿½n del Crï¿½dito
+Para efectos prï¿½cticos y mejor lectura del cï¿½digo, se plantean las siguientes salidas:
+1. Resultado satisfactorio para la aprobaciï¿½n del crï¿½dito CON o SIN co-deudor
+2. Rechazo por exceso en el lï¿½mite de tiempo de pago para crï¿½ditos grandes
+3. Rechazo por exceso en el lï¿½mite de tiempo de pago para crï¿½ditos pequeï¿½os
+4. Rechazo por exceso en el lï¿½mite de monto permitido para el crï¿½dito CON co-deudor
+5. Rechazo por exceso en el lï¿½mite de monto permitido para el crï¿½dito SIN co-deudor
 6. Rechazo de cliente desempleado por no tener co-deudor*/
 
 int loanValidation (string clientType, float loadAmount, int monthsNumber, bool hasCoDebtor) {
@@ -244,13 +244,13 @@ int loanValidation (string clientType, float loadAmount, int monthsNumber, bool 
 	return 6;
 }
 
-//Calculo del Monto Total (e Impresión en la consola por facilidad)
+//Calculo del Monto Total (e Impresiï¿½n en la consola por facilidad)
 void totalAmount (string clientType, float loadAmount, int monthsNumber) {
 	
 	float interestRate = (clientType == "ESTUDIANTE") ? *(rates + 0) : (clientType == "EMPLEADO") ? *(rates + 1) : (clientType == "PENSIONADO") ? *(rates + 2) : (clientType == "DESEMPLEADO") ? *(rates + 3) : 1;
 	float loadInterest = loadAmount * interestRate * monthsNumber;
 	float totalAmount = loadAmount + loadInterest;
 	
-	cout << "\tEl préstamo solicitado por un monto de $" << fixed << setprecision(2) << loadAmount << " a un plazo de " << monthsNumber << " meses se considera APROBADO con una Tasa del " << setprecision(1) << interestRate * 100 << "%" << endl;
+	cout << "\tEl prï¿½stamo solicitado por un monto de $" << fixed << setprecision(2) << loadAmount << " a un plazo de " << monthsNumber << " meses se considera APROBADO con una Tasa del " << setprecision(1) << interestRate * 100 << "%" << endl;
 	cout << "\tTotal a pagar: $ " << setprecision(2) << totalAmount << endl << endl;
 }
