@@ -6,14 +6,14 @@
 using namespace std;
 
 //Definición de Tasas de Interes
-float rates[] = {0.006, 0.007, 0.004, 0.008};
+float rates[] = {0.06, 0.07, 0.04, 0.08};
 
 bool stringTypeVerification (string stringValue);
 bool floatTypeVerification (float floatValue);
 bool intTypeVerification (int integerValue);
 bool boolTypeVerification (bool booleanValue);
 int loanValidation (string clientType, float loadAmount, int monthsNumber, bool hasCoDebtor);
-void totalAmount (string clientType, float loadAmount, int monthsNumber);
+void totalAmount (string clientType, float loadAmount, int monthsNumber, bool hasCoDebtor);
 
 
 int main () {
@@ -69,7 +69,7 @@ int main () {
 		cout << "\n------------------------------------------------------------------------------------------------------------------------" << endl;
 		switch(result){
 			case 1:
-				totalAmount(clientType, loadAmount, monthsNumber);		//Por facilidades para escribir las tasas de interés se toma la decisión de crear otra función
+				totalAmount(clientType, loadAmount, monthsNumber, hasCoDebtor);		//Por facilidades para escribir las tasas de interés se toma la decisión de crear otra función
 				break;
 			case 2:
 				cout << "\t\aRECHAZADO. El plazo excede el máximo de tiempo permitido para créditos de montos bajos" << endl << endl;
@@ -126,16 +126,16 @@ bool floatTypeVerification (float loadAmount) {
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 99999999. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 10000000. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 	
-	if (loadAmount > 1000 && loadAmount < 99999999) {
+	if (loadAmount > 1000 && loadAmount < 10000000) {
 		return true;
 	} else {
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 99999999. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite montos entre 1000 - 10000000. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
@@ -148,16 +148,16 @@ bool intTypeVerification (int monthsNumber) {
 		cin.clear();
 		cin.ignore(1000, '\n');
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite entre 2 - 50 meses. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tipo de dato ingresado no es válido, recuerde que solo se admite entre 2 - 48 meses. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
 	
-	if (monthsNumber > 1 && monthsNumber < 50) {
+	if (monthsNumber > 1 && monthsNumber < 48) {
 		return true;
 	} else {
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
-		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite entre 2 - 50 meses. Por favor intente nuevamente." << endl << endl;
+		cout << "\n\a>> El tamaño del dato ingresado no es válido, recuerde que solo se admite entre 2 - 48 meses. Por favor intente nuevamente." << endl << endl;
 		cout << "------------------------------------------------------------------------------------------------------------------------" << endl;
 		return false;
 	}
@@ -244,10 +244,23 @@ int loanValidation (string clientType, float loadAmount, int monthsNumber, bool 
 }
 
 //Calculo del Monto Total (e Impresión en la consola por facilidad)
-void totalAmount (string clientType, float loadAmount, int monthsNumber) {
+//MODIFICACIONES EN CLASE
+void totalAmount (string clientType, float loadAmount, int monthsNumber, bool hasCoDebtor) {
 	
 	float interestRate = (clientType == "ESTUDIANTE") ? *(rates + 0) : (clientType == "EMPLEADO") ? *(rates + 1) : (clientType == "PENSIONADO") ? *(rates + 2) : (clientType == "DESEMPLEADO") ? *(rates + 3) : 1;
+	
+	//A) Si el plazo es mayor a 36 meses, incrementar tasa en 1.5%
+        if (monthsNumber > 36) {
+                interestRate += 0.015;
+        }
+
 	float loadInterest = loadAmount * interestRate * monthsNumber;
+	
+	//B) Si el cliente es "Empleado" o "Pensionado" y tiene codeudor, aplicar un descuento del 10% sobre el interés calculado
+        if ((clientType == "EMPLEADO" && hasCoDebtor) || (clientType == "PENSIONADO" && hasCoDebtor)) {
+                loadInterest -= loadInterest * 0.1;
+        }
+
 	float totalAmount = loadAmount + loadInterest;
 	
 	cout << "\tEl préstamo solicitado por un monto de $" << fixed << setprecision(2) << loadAmount << " a un plazo de " << monthsNumber << " meses se considera APROBADO con una Tasa del " << setprecision(1) << interestRate * 100 << "%" << endl;
